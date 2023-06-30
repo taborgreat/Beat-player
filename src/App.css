@@ -1,7 +1,8 @@
-@media screen and (max-width: 400px) {
+[class*="col-"] {
   #drums > button {
     width: 50%;
   }
+
 }
 
 
