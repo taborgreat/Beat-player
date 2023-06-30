@@ -13,14 +13,13 @@
 
 
 
-
-
 body {
   background-image: linear-gradient(to right, #60b2e5, rgb(188, 255, 192));
   text-align: center;
-
+  touch-action: manipulation;
   box-sizing: border-box;
   margin: 0;
+  
 
 }
 
