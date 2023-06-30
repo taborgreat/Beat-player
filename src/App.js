@@ -1,9 +1,16 @@
 import { useEffect, useReducer } from "react";
 import "./App.css";
 
+const actions = {
+  TOGGLESONG: "toggle-song",
+  NEXTSONG: "next-song",
+  PREVSONG: "prev-song",
+  TOGGLEPAUSE: "toggle-pause",
+};
+
 function App() {
   const initialState = {
-    drumTypes: [
+    drums: [
       {
         type: "kick",
         source: new Audio(require("./sounds/kick.mp3")),
@@ -29,25 +36,95 @@ function App() {
         img: require("./images/openhat.png"),
       },
     ],
+    melodies: [
+      {
+        isPaused: false,
+        name: "Horse Training Theme",
+        source: require("./sounds/melodyone.mp3"),
+      },
+      {
+        isPaused: false,
+        name: "Spaceu Industrial",
+        source: require("./sounds/melodytwo.mp3"),
+      },
+      {
+        isPaused: false,
+        name: "Ghost of Myself",
+        source: require("./sounds/melodythree.mp3"),
+      },
+    ],
+    currentSong: 0,
+    maxSongs: 2, //set based off of max songs
+    playPauseImage: require("./images/play.png")
   };
 
-  const reducer = () => {};
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case actions.TOGGLESONG: {
+        console.log(state.currentSong);
+
+        if (
+          state.currentSong < state.maxSongs &&
+          action.move === actions.NEXTSONG
+        ) {
+          return { ...state, currentSong: state.currentSong + 1 };
+        } else if (
+          state.currentSong >= state.maxSongs &&
+          action.move === actions.NEXTSONG
+        ) {
+          return { ...state, currentSong: 0 };
+        } else if (state.currentSong > 0 && action.move === actions.PREVSONG) {
+          return { ...state, currentSong: state.currentSong - 1 };
+        } else {
+          return { ...state, currentSong: state.maxSongs };
+        }
+      }
+
+      case actions.TOGGLEPAUSE: {
+        if (!state.melodies[state.currentSong].isPaused) {
+          action.songRef.play();
+          return {
+            ...state, playPauseImage: require('./images/pause.png'),
+            melodies: state.melodies.map((melody, index) =>
+              index === state.currentSong
+                ? { ...melody, isPaused: !melody.isPaused }
+                : melody
+            )
+          };
+        } else {
+          action.songRef.pause();
+          return {
+            ...state, playPauseImage: require('./images/play.png'),
+            melodies: state.melodies.map((melody, index) =>
+              index === state.currentSong
+                ? { ...melody, isPaused: !melody.isPaused }
+                : melody
+            )
+          };
+        }
+      }
+      
+      
+      default:
+        return state;
+    }
+  };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
       console.log(event.key);
-      let currSound = state.drumTypes.filter((drum) => drum.key === event.key);
+      let currSound = state.drums.filter((drum) => drum.key === event.key);
       currSound.map((sound) => {
         sound.source.currentTime = 0;
         sound.source.play();
-        return null;
+        return undefined;
       });
     });
   });
 
-  const drumList = state.drumTypes.map((drum) => (
+  const drumList = state.drums.map((drum) => (
     <button
       key={drum.type}
       onClick={() => {
@@ -62,7 +139,41 @@ function App() {
 
   return (
     <div id="drum-machine">
-      <div id="melody"></div>
+      <h1>Beat Player</h1>
+      <div id="melody">
+        <h2>{state.melodies[state.currentSong].name}</h2>
+        <button
+          id="prev"
+          onClick={() =>
+            dispatch({ type: actions.TOGGLESONG, move: actions.PREVSONG })
+          }
+        >
+          <img src={require("./images/leftarrow.png")} alt="PREV"/>
+        </button>
+  
+        <audio
+          id="currSong"
+          
+          loop
+          src={state.melodies[state.currentSong].source}
+        ></audio>
+
+        <button
+          id="next"
+          onClick={() =>
+            dispatch({ type: actions.TOGGLESONG, move: actions.NEXTSONG })
+          }
+        >
+          <img src={require("./images/rightarrow.png")} alt="NEXT"/>
+        </button>
+
+        <button
+          id="setPaused"
+          onClick={() => dispatch({ type: actions.TOGGLEPAUSE, songRef: document.getElementById("currSong") })}
+          >
+          <img src={state.playPauseImage} alt="PLAY"/>
+         </button>
+      </div>
 
       <div id="drums">{drumList}</div>
       <div id="display"></div>

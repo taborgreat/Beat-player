@@ -7,6 +7,7 @@ body {
 
 }
 
-img {
-  background-color: transparent;
+button{
+  background-color: #60b2e5;
+  border: solid black 1px;
 }
