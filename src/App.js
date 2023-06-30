@@ -134,7 +134,6 @@ function App() {
       onClick={() => {
         drum.source.pause();
         drum.source.currentTime = 0;
-        drum.source.load();
         drum.source.play();
         
       }}
