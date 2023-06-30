@@ -1,13 +1,10 @@
-@media only screen
-  and (device-width: 414px) /* iPhone 11 portrait */
-  and (device-height: 896px)
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-  /* CSS rules for iPhone 11 portrait */
-  /* Place your styles here */
-  .button {
-    width: 50%; /* Make each button take 50% of the width */
-    float: left; /* Float the buttons to create a 2x2 grid */
+@media only screen and (max-width: 767px) {
+  body{
+   background-color: blue;
+  }
+  #drums > button {
+    width: 50%; 
+    float: left; 
   }
 }
 
@@ -18,7 +15,7 @@
 
 
 body {
-  background-image: linear-gradient(to right, #60b2e5, rgb(188, 255, 192));
+
   text-align: center;
 
   box-sizing: border-box;
