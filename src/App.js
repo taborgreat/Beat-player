@@ -131,8 +131,9 @@ function App() {
       id={drum.type}
       key={drum.type}
       onClick={() => {
-        drum.source.currentTime = -1;
+        
         drum.source.play();
+        drum.source.currentTime = 0;
       }}
     >
       <img src={drum.img} alt={drum.type}></img>
