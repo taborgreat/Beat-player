@@ -120,6 +120,7 @@ function App() {
       currSound.map((sound) => {
         sound.source.currentTime = 0;
         sound.source.play();
+
         return undefined;
       });
     });
@@ -131,9 +132,11 @@ function App() {
       id={drum.type}
       key={drum.type}
       onClick={() => {
-        
-        drum.source.play();
+        drum.source.pause();
         drum.source.currentTime = 0;
+        drum.source.load();
+        drum.source.play();
+        
       }}
     >
       <img src={drum.img} alt={drum.type}></img>

@@ -1,10 +1,11 @@
 @media only screen and (max-width: 767px) {
-  body{
-   background-color: blue;
-  }
+
   #drums > button {
     width: 50%; 
     float: left; 
+  }
+  #drums > button > p {
+    color:white;
   }
 }
 
@@ -15,7 +16,7 @@
 
 
 body {
-
+  background-image: linear-gradient(to right, #60b2e5, rgb(188, 255, 192));
   text-align: center;
 
   box-sizing: border-box;
