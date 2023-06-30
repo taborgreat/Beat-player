@@ -131,7 +131,7 @@ function App() {
       id={drum.type}
       key={drum.type}
       onClick={() => {
-        drum.source.currentTime = 0;
+        drum.source.currentTime = -1;
         drum.source.play();
       }}
     >
