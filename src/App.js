@@ -127,6 +127,8 @@ function App() {
 
   const drumList = state.drums.map((drum) => (
     <button
+      type="button"
+      id={drum.name}
       key={drum.type}
       onClick={() => {
         drum.source.currentTime = 0;
