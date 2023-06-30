@@ -147,8 +147,9 @@ function App() {
         <h2>{state.melodies[state.currentSong].name}</h2>
         <button
           id="prev"
-          onClick={() =>
-            dispatch({ type: actions.TOGGLESONG, move: actions.PREVSONG })
+          onClick={(e) => {
+            e.preventDefault()
+            dispatch({ type: actions.TOGGLESONG, move: actions.PREVSONG })}
           }
         >
           <img src={require("./images/leftarrow.png")} alt="PREV" />
