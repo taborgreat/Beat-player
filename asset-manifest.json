@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/beat-player/static/css/main.2f30f6ce.css",
+    "main.js": "/beat-player/static/js/main.5af2efc4.js",
+    "static/js/787.746f568a.chunk.js": "/beat-player/static/js/787.746f568a.chunk.js",
+    "static/media/melodythree.mp3": "/beat-player/static/media/melodythree.4293a176c465dbad8a63.mp3",
+    "static/media/melodyone.mp3": "/beat-player/static/media/melodyone.f9ba649cc62cec37653f.mp3",
+    "static/media/melodytwo.mp3": "/beat-player/static/media/melodytwo.1fb033225d1658772d18.mp3",
+    "static/media/clap.mp3": "/beat-player/static/media/clap.e67fd46e7f3ca8ca7447.mp3",
+    "static/media/kick.mp3": "/beat-player/static/media/kick.7cadfc4267630cccd974.mp3",
+    "static/media/openhat.mp3": "/beat-player/static/media/openhat.26896b8bc11e54984834.mp3",
+    "static/media/hihat.mp3": "/beat-player/static/media/hihat.f631834742da8c9be31b.mp3",
+    "index.html": "/beat-player/index.html",
+    "main.2f30f6ce.css.map": "/beat-player/static/css/main.2f30f6ce.css.map",
+    "main.5af2efc4.js.map": "/beat-player/static/js/main.5af2efc4.js.map",
+    "787.746f568a.chunk.js.map": "/beat-player/static/js/787.746f568a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2f30f6ce.css",
+    "static/js/main.5af2efc4.js"
+  ]
+}
