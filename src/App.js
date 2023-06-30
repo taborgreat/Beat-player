@@ -44,7 +44,7 @@ function App() {
       },
       {
         isPaused: false,
-        name: "Spaceu Industrial",
+        name: "Spacey Industrial",
         source: require("./sounds/melodytwo.mp3"),
       },
       {
@@ -55,13 +55,13 @@ function App() {
     ],
     currentSong: 0,
     maxSongs: 2, //set based off of max songs
-    playPauseImage: require("./images/play.png")
+    playPauseImage: require("./images/play.png"),
   };
 
   const reducer = (state, action) => {
     switch (action.type) {
       case actions.TOGGLESONG: {
-        console.log(state.currentSong);
+        state.playPauseImage = require('./images/play.png')
 
         if (
           state.currentSong < state.maxSongs &&
@@ -84,27 +84,28 @@ function App() {
         if (!state.melodies[state.currentSong].isPaused) {
           action.songRef.play();
           return {
-            ...state, playPauseImage: require('./images/pause.png'),
+            ...state,
+            playPauseImage: require("./images/pause.png"),
             melodies: state.melodies.map((melody, index) =>
               index === state.currentSong
                 ? { ...melody, isPaused: !melody.isPaused }
                 : melody
-            )
+            ),
           };
         } else {
           action.songRef.pause();
           return {
-            ...state, playPauseImage: require('./images/play.png'),
+            ...state,
+            playPauseImage: require("./images/play.png"),
             melodies: state.melodies.map((melody, index) =>
               index === state.currentSong
                 ? { ...melody, isPaused: !melody.isPaused }
                 : melody
-            )
+            ),
           };
         }
       }
-      
-      
+
       default:
         return state;
     }
@@ -139,7 +140,7 @@ function App() {
 
   return (
     <div id="drum-machine">
-      <h1>Beat Player</h1>
+      <h1><u>BEAT PLAYER</u></h1>
       <div id="melody">
         <h2>{state.melodies[state.currentSong].name}</h2>
         <button
@@ -148,15 +149,25 @@ function App() {
             dispatch({ type: actions.TOGGLESONG, move: actions.PREVSONG })
           }
         >
-          <img src={require("./images/leftarrow.png")} alt="PREV"/>
+          <img src={require("./images/leftarrow.png")} alt="PREV" />
         </button>
-  
+
         <audio
           id="currSong"
-          
           loop
           src={state.melodies[state.currentSong].source}
         ></audio>
+        <button
+          id="setPaused"
+          onClick={() =>
+            dispatch({
+              type: actions.TOGGLEPAUSE,
+              songRef: document.getElementById("currSong"),
+            })
+          }
+        >
+          <img src={state.playPauseImage} alt="PLAY" />
+        </button>
 
         <button
           id="next"
@@ -164,15 +175,8 @@ function App() {
             dispatch({ type: actions.TOGGLESONG, move: actions.NEXTSONG })
           }
         >
-          <img src={require("./images/rightarrow.png")} alt="NEXT"/>
+          <img src={require("./images/rightarrow.png")} alt="NEXT" />
         </button>
-
-        <button
-          id="setPaused"
-          onClick={() => dispatch({ type: actions.TOGGLEPAUSE, songRef: document.getElementById("currSong") })}
-          >
-          <img src={state.playPauseImage} alt="PLAY"/>
-         </button>
       </div>
 
       <div id="drums">{drumList}</div>

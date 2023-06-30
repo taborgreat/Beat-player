@@ -1,13 +1,29 @@
-.App {
-  text-align: center;
-}
 
 body {
-  background-image: linear-gradient(to right, #60b2e5, #7c8483);
+  background-image: linear-gradient(to right, #60b2e5, rgb(188, 255, 192));
+  text-align: center;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
 
 }
 
 button{
   background-color: #60b2e5;
   border: solid black 1px;
+}
+
+#melody{
+
+  margin-top: 50px;
+  margin-bottom: 250px;
+}
+
+button:hover{
+  background-color: #3f8ab9;
+}
+
+h1 {
+  color:white;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
